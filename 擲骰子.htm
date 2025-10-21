@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>會滾動的骰子</title>
+    <style>
+        /* 引入 CSS 樣式 */
+        :root {
+            --dice-size: 100px; /* 定義骰子大小變數 */
+            --dot-color: #333; /* 預設骰子點數顏色 (黑色) */
+            --dot-size: 15px;  /* 預設骰子點數大小 */
+            --special-dot-color: #e74c3c; /* 特殊點數顏色 (紅色) */
+            --special-dot-size: 20px; /* 特殊點數大小 */
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        /* 骰子主體樣式 */
+        #dice {
+            width: var(--dice-size);
+            height: var(--dice-size);
+            border: 5px solid #333;
+            border-radius: 15px;
+            background-color: #fff;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3x3 的網格佈局 */
+            grid-template-rows: repeat(3, 1fr);
+            align-items: center;
+            justify-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: border-color 0.3s;
+        }
+
+        /* 骰子點數樣式 (預設值) */
+        .dot {
+            width: var(--dot-size);
+            height: var(--dot-size);
+            background-color: var(--dot-color);
+            border-radius: 50%; /* 圓形 */
+            visibility: hidden; /* 預設隱藏所有點數 */
+        }
+
+        /* **新增特殊點數樣式** */
+        .dot.special-dot {
+            width: var(--special-dot-size);
+            height: var(--special-dot-size);
+            background-color: var(--special-dot-color);
+        }
+
+        /* 點數的位置 (使用 grid 區域) */
+        .dot-1 { grid-area: 2 / 2; } /* 中央 (一點的位置) */
+        .dot-2 { grid-area: 1 / 3; } /* 右上 */
+        .dot-3 { grid-area: 3 / 1; } /* 左下 */
+        .dot-4 { grid-area: 1 / 1; } /* 左上 */
+        .dot-5 { grid-area: 3 / 3; } /* 右下 */
+        .dot-6 { grid-area: 2 / 1; } /* 左中 */
+        .dot-7 { grid-area: 2 / 3; } /* 右中 */
+
+        /* 骰子點數顯示規則 */
+        /* 數字 1: 顯示中央點 */
+        .show-1 .dot-1 { visibility: visible; }
+
+        /* 數字 2: 顯示右上、左下 */
+        .show-2 .dot-2, .show-2 .dot-3 { visibility: visible; }
+
+        /* 數字 3: 顯示中央、右上、左下 */
+        .show-3 .dot-1, .show-3 .dot-2, .show-3 .dot-3 { visibility: visible; }
+
+        /* 數字 4: 顯示四角 */
+        .show-4 .dot-2, .show-4 .dot-3, .show-4 .dot-4, .show-4 .dot-5 { visibility: visible; }
+
+        /* 數字 5: 顯示四角和中央 */
+        .show-5 .dot-1, .show-5 .dot-2, .show-5 .dot-3, .show-5 .dot-4, .show-5 .dot-5 { visibility: visible; }
+
+        /* 數字 6: 顯示六邊 */
+        .show-6 .dot-2, .show-6 .dot-3, .show-6 .dot-4, .show-6 .dot-5,
+        .show-6 .dot-6, .show-6 .dot-7 { visibility: visible; }
+
+
+        /* 按鈕和結果訊息樣式 (保持不變) */
+        button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover:not(:disabled) {
+            background-color: #0056b3;
+        }
+
+        button:disabled {
+            background-color: #a0a0a0;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #333;
+            font-weight: bold;
+            min-height: 1.5em; /* 避免文字變換時畫面跳動 */
+        }
+    </style>
+</head>
+<body>
+    <h1>魔法骰子</h1>
+    
+    <div id="dice">
+        <div class="dot dot-4"></div>
+        <div class="dot dot-2"></div>
+        <div class="dot dot-7"></div>
+        <div class="dot dot-6"></div>
+        <div class="dot dot-1"></div> <div class="dot dot-5"></div>
+        <div class="dot dot-3"></div>
+    </div>
+    
+    <button id="roll-button" onclick="startRollAnimation()">擲出骰子</button>
+
+    <div id="message">點擊按鈕擲骰子！</div>
+
+    <script>
+        // JavaScript 程式碼
+        let rollInterval = null; 
+        const diceElement = document.getElementById('dice');
+        const messageElement = document.getElementById('message');
+        const rollButton = document.getElementById('roll-button');
+        
+        // 取得中央點元素，方便我們為它添加特殊樣式
+        const centerDot = document.querySelector('.dot-1'); 
+
+        /**
+         * 根據傳入的數字，更新骰子顯示的點數。
+         * @param {number} number - 要顯示的骰子點數 (1 到 6)
+         */
+        function displayDice(number) {
+            // 1. 清除所有類別
+            diceElement.className = ''; 
+            
+            // 2. 移除中央點的特殊樣式
+            centerDot.classList.remove('special-dot');
+
+            // 3. 添加對應數字的類別來顯示點數
+            diceElement.classList.add(`show-${number}`);
+
+            // 4. **特殊處理：如果數字是 1，則加上特殊樣式**
+            if (number === 1) {
+                centerDot.classList.add('special-dot');
+            }
+        }
+
+        /**
+         * 產生 1 到 6 之間的隨機整數
+         */
+        function getRandomNumber() {
+            return Math.floor(Math.random() * 6) + 1;
+        }
+
+        /**
+         * 開始擲骰子動畫 (數字閃動)
+         */
+        function startRollAnimation() {
+            if (rollInterval) return; 
+
+            rollButton.disabled = true;
+            messageElement.textContent = '骰子正在滾動...';
+
+            const animationDuration = 1500; 
+
+            // 設定閃動間隔 (50 毫秒)
+            rollInterval = setInterval(() => {
+                const flashingNumber = getRandomNumber();
+                displayDice(flashingNumber);
+            }, 50);
+
+            // 在動畫時間結束後停止動畫並顯示最終結果
+            setTimeout(() => {
+                stopRollAnimation();
+            }, animationDuration);
+        }
+
+        /**
+         * 停止動畫並顯示最終結果
+         */
+        function stopRollAnimation() {
+            clearInterval(rollInterval);
+            rollInterval = null;
+
+            const finalResult = getRandomNumber();
+            
+            // 顯示最終結果，這會觸發特殊樣式
+            displayDice(finalResult);
+
+            // 更新訊息
+            messageElement.textContent = `你骰到的是 ${finalResult}！`;
+
+            rollButton.disabled = false;
+        }
+
+        // 頁面載入時先顯示一個預設的數字 (1)
+        displayDice(1);
+    </script>
+</body>
+</html>
