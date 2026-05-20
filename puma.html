@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>短影片企劃書 — 沈伯洋</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700;900&family=Noto+Sans+TC:wght@300;400;500&family=DM+Mono:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-light: #555;
+    --ink-faint: #999;
+    --paper: #f7f4ef;
+    --paper-dark: #edeae4;
+    --accent: #c0392b;
+    --accent-2: #2471a3;
+    --accent-3: #1d8a5e;
+    --rule: rgba(0,0,0,0.12);
+    --serif: 'Noto Serif TC', serif;
+    --sans: 'Noto Sans TC', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 300;
+    line-height: 1.8;
+    font-size: 15px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    padding: 80px 0 60px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .header-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s forwards;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin-bottom: 16px;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s forwards;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--ink-light);
+    font-weight: 300;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.3s forwards;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.4s forwards;
+  }
+
+  .meta-pill {
+    font-family: var(--mono);
+    font-size: 11px;
+    padding: 6px 14px;
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+    letter-spacing: 0.08em;
+    color: var(--ink-light);
+  }
+
+  /* ── LAYOUT ── */
+  main {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 40px 120px;
+  }
+
+  section {
+    padding: 64px 0;
+    border-bottom: 1px solid var(--rule);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+
+  h2 {
+    font-family: var(--serif);
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  h3 {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin: 32px 0 12px;
+    letter-spacing: -0.01em;
+  }
+
+  p { margin-bottom: 16px; color: var(--ink-light); line-height: 1.9; }
+
+  /* ── CALLOUT ── */
+  .callout {
+    padding: 20px 24px;
+    background: var(--paper-dark);
+    border-left: 3px solid var(--ink);
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.7;
+    margin: 24px 0;
+    font-style: italic;
+  }
+
+  .callout.red { border-color: var(--accent); }
+  .callout.blue { border-color: var(--accent-2); }
+  .callout.green { border-color: var(--accent-3); }
+
+  /* ── ROLE CARDS ── */
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 24px 0;
+  }
+
+  .role-card {
+    background: var(--paper);
+    padding: 24px;
+  }
+
+  .role-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .role-name {
+    font-family: var(--serif);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .role-desc { font-size: 13px; color: var(--ink-light); line-height: 1.7; }
+
+  /* ── RELATION ITEMS ── */
+  .relation-list { list-style: none; margin: 20px 0; }
+
+  .relation-item {
+    display: flex;
+    gap: 20px;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: flex-start;
+  }
+
+  .relation-item:last-child { border-bottom: none; }
+
+  .relation-arrow {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    min-width: 48px;
+    padding-top: 2px;
+  }
+
+  .relation-content strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 4px;
+    color: var(--ink);
+  }
+
+  .relation-content span { font-size: 13px; color: var(--ink-light); }
+
+  /* ── TIMELINE ── */
+  .timeline { margin: 20px 0; }
+
+  .tl-row {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 20px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .tl-row:last-child { border-bottom: none; }
+
+  .tl-time {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--accent-2);
+    padding-top: 2px;
+  }
+
+  .tl-text { font-size: 14px; color: var(--ink-light); line-height: 1.7; }
+
+  /* ── SCRIPT BLOCKS ── */
+  .script { margin: 16px 0; border: 1px solid var(--rule); }
+
+  .script-row {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+  }
+
+  .script-row + .script-row { border-top: 1px solid var(--rule); }
+
+  .script-speaker {
+    padding: 12px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    font-weight: 500;
+    text-transform: uppercase;
+    border-right: 1px solid var(--rule);
+    display: flex;
+    align-items: center;
+    background: var(--paper-dark);
+  }
+
+  .script-speaker.sandy { color: var(--accent); }
+  .script-speaker.puma { color: var(--accent-2); }
+  .script-speaker.wife { color: var(--accent-3); }
+
+  .script-line {
+    padding: 12px 16px;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.7;
+  }
+
+  /* ── QUESTION LIST ── */
+  .q-list { margin: 16px 0; list-style: none; }
+
+  .q-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 14px;
+    color: var(--ink-light);
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .q-item:last-child { border-bottom: none; }
+
+  .q-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--ink-faint);
+    min-width: 20px;
+    padding-top: 2px;
+  }
+
+  /* ── COMPARE TABLE ── */
+  .compare {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 13px;
+  }
+
+  .compare th {
+    text-align: left;
+    padding: 10px 16px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-bottom: 2px solid var(--ink);
+    font-weight: 400;
+  }
+
+  .compare td {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .compare td:first-child { color: var(--ink-faint); font-size: 12px; white-space: nowrap; }
+  .compare td.them { color: var(--ink-light); }
+  .compare td.us { color: var(--accent-3); font-weight: 500; }
+
+  /* ── SPEC GRID ── */
+  .spec-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 20px 0;
+  }
+
+  .spec-block {
+    background: var(--paper);
+    padding: 24px;
+  }
+
+  .spec-block-title {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .spec-list { list-style: none; }
+  .spec-list li {
+    font-size: 13px;
+    color: var(--ink-light);
+    padding: 5px 0;
+    display: flex;
+    gap: 10px;
+  }
+
+  .spec-list li::before {
+    content: "—";
+    color: var(--ink-faint);
+    font-family: var(--mono);
+    font-size: 11px;
+    padding-top: 2px;
+  }
+
+  /* ── PLATFORM BADGES ── */
+  .platform-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .platform-badge {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1px solid;
+  }
+
+  .platform-badge.fb { color: var(--accent-2); border-color: var(--accent-2); }
+  .platform-badge.ig { color: var(--accent); border-color: var(--accent); }
+
+  .platform-duration {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  /* ── NAV ── */
+  .toc {
+    position: sticky;
+    top: 0;
+    background: rgba(247, 244, 239, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+    padding: 0 40px;
+    overflow-x: auto;
+  }
+
+  .toc-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    gap: 0;
+  }
+
+  .toc a {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--ink-faint);
+    padding: 14px 16px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+
+  .toc a:hover, .toc a.active {
+    color: var(--ink);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .header-inner, main { padding-left: 24px; padding-right: 24px; }
+    .role-grid, .spec-grid { grid-template-columns: 1fr; }
+    .script-row { grid-template-columns: 80px 1fr; }
+    .toc { padding: 0 16px; }
+    .toc a { padding: 12px 10px; font-size: 9px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="eyebrow">短影片企劃書 · 2026</div>
+    <h1>認識她老公</h1>
+    <p class="subtitle">Facebook + Instagram 各一支<br>一個不提選舉、只讓人喜歡上這個人的真實對話</p>
+    <div class="header-meta">
+      <span class="meta-pill">Facebook · 90 sec</span>
+      <span class="meta-pill">Instagram Reels · 30 sec</span>
+      <span class="meta-pill">手機拍攝</span>
+      <span class="meta-pill">同一天拍攝</span>
+    </div>
+  </div>
+</header>
+
+<nav class="toc" aria-label="目錄">
+  <div class="toc-inner">
+    <a href="#concept">核心概念</a>
+    <a href="#roles">角色設定</a>
+    <a href="#advantage">獨特優勢</a>
+    <a href="#facebook">Facebook</a>
+    <a href="#instagram">Instagram</a>
+    <a href="#acg">ACG 笑點</a>
+    <a href="#questions">問題清單</a>
+    <a href="#spec">製作規格</a>
+    <a href="#compare">差異對照</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- 一、核心概念 -->
+  <section id="concept">
+    <div class="section-label">01</div>
+    <h2>核心概念</h2>
+    <p>這不是選舉廣告。全片從頭到尾不提選舉、不提台北市長、不提政策。</p>
+    <p>這是兩個女生的真實對話——一個去認識朋友的老公，一個分享自己最真實的生活。觀眾看完帶著好奇心自己去查他是誰，這個效果比任何硬廣都強。</p>
+    <div class="callout red">核心信念：讓人喜歡上這個人，他們自然會想知道他是誰。</div>
+  </section>
+
+  <!-- 二、角色設定 -->
+  <section id="roles">
+    <div class="section-label">02</div>
+    <h2>角色設定</h2>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-title">主持人</div>
+        <div class="role-name">你老婆</div>
+        <div class="role-desc">專業政治短影片製作者，以朋友身份出現，不是媒體人</div>
+      </div>
+      <div class="role-card">
+        <div class="role-title">主受訪</div>
+        <div class="role-name">Sandy</div>
+        <div class="role-desc">沈伯洋的太太，也是你的民法老師。對談的天然基礎</div>
+      </div>
+      <div class="role-card">
+        <div class="role-title">畫龍點睛</div>
+        <div class="role-name">沈伯洋</div>
+        <div class="role-desc">聲音彩蛋，不一定入鏡。兩個女生聊到他，他在遠處插一句話</div>
+      </div>
+      <div class="role-card">
+        <div class="role-title">幕後</div>
+        <div class="role-name">你</div>
+        <div class="role-desc">掌鏡、協助現場，不入鏡。與 Sandy 有師生關係增加現場溫度</div>
+      </div>
+    </div>
+    <div class="callout blue">沈伯洋只出聲不出鏡，反而像是觀眾偷聽到真實家庭對話，比正式入鏡更有感染力。</div>
+  </section>
+
+  <!-- 三、獨特優勢 -->
+  <section id="advantage">
+    <div class="section-label">03</div>
+    <h2>我們的獨特優勢</h2>
+    <p>這些關係是任何媒體和競選團隊都複製不了的。</p>
+    <ul class="relation-list">
+      <li class="relation-item">
+        <span class="relation-arrow">→</span>
+        <div class="relation-content">
+          <strong>你老婆 × Sandy</strong>
+          <span>Sandy 是你們的證婚人之一，不是陌生人訪問，是真實閨密對話</span>
+        </div>
+      </li>
+      <li class="relation-item">
+        <span class="relation-arrow">→</span>
+        <div class="relation-content">
+          <strong>你 × Sandy</strong>
+          <span>你是她的民法學生，師生情誼讓整個場景更有溫度和真實感</span>
+        </div>
+      </li>
+      <li class="relation-item">
+        <span class="relation-arrow">→</span>
+        <div class="relation-content">
+          <strong>你 × 沈伯洋</strong>
+          <span>剛發現的高中學長學弟關係（你大他兩屆），意外的緣分，本身就是天然笑點</span>
+        </div>
+      </li>
+      <li class="relation-item">
+        <span class="relation-arrow">→</span>
+        <div class="relation-content">
+          <strong>你 + 沈伯洋 → 同是宅男</strong>
+          <span>你喜歡電玩，他是 ACG 全面迷。兩個宅男的共同語言，是整個企劃最強的隱藏亮點</span>
+        </div>
+      </li>
+      <li class="relation-item">
+        <span class="relation-arrow">→</span>
+        <div class="relation-content">
+          <strong>第三方視角</strong>
+          <span>你老婆不是競選團隊，朋友說的話比官方說的更可信</span>
+        </div>
+      </li>
+    </ul>
+  </section>
+
+  <!-- 四、Facebook -->
+  <section id="facebook">
+    <div class="section-label">04</div>
+    <div class="platform-header">
+      <span class="platform-badge fb">Facebook</span>
+      <span class="platform-duration">90 秒</span>
+    </div>
+    <h2>影片一</h2>
+    <p>目標受眾：35 歲以上，台北在地居民，重視情感連結和真實性。</p>
+    <p>核心感覺：「我朋友帶我認識她老公這個人」——溫暖、真實、不像廣告。</p>
+    <p>拍攝地點：有生活感的場所，例如他們家、喜歡的咖啡廳，不要辦公室或造勢場合。</p>
+
+    <h3>影片結構</h3>
+    <div class="timeline">
+      <div class="tl-row">
+        <span class="tl-time">0–10 秒</span>
+        <span class="tl-text">你老婆開場白：「我認識她很久了，今天讓你們認識一下她老公這個人」——建立第三方可信度</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">10–50 秒</span>
+        <span class="tl-text">Sandy 分享 2–3 個真實生活小故事：他的小缺點、可愛習慣、讓她感動的時刻</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">50–75 秒</span>
+        <span class="tl-text">ACG 吐槽段落：Sandy 聊他追番、扭蛋的宅男日常，沈伯洋在遠處插一句替自己辯護，越辯越糟就是笑點</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">75–90 秒</span>
+        <span class="tl-text">自然收尾，沈伯洋再補一句有點好笑但讓人記得住的話，不用力推，讓觀眾帶著好奇心離開</span>
+      </div>
+    </div>
+    <div class="callout blue">成功標準：觀眾看完說「這個人跟我想像的政治人物不一樣」——這樣就夠了。</div>
+  </section>
+
+  <!-- 五、Instagram -->
+  <section id="instagram">
+    <div class="section-label">05</div>
+    <div class="platform-header">
+      <span class="platform-badge ig">Instagram Reels</span>
+      <span class="platform-duration">30 秒</span>
+    </div>
+    <h2>影片二</h2>
+    <p>目標受眾：18–34 歲，年輕族群，對政治有距離感但對真實人物有興趣。</p>
+    <p>素材來源：同一天拍攝，從 Facebook 版素材中挑最有反差或最好笑的片段重新剪輯，不需重拍。</p>
+    <p>字幕風格：大字、跳動、關鍵詞加色，靜音也能完整看懂。</p>
+
+    <h3>影片結構</h3>
+    <div class="timeline">
+      <div class="tl-row">
+        <span class="tl-time">0–3 秒</span>
+        <span class="tl-text">直接從最有反差的畫面開場，不介紹任何人。例如直接切 Sandy 吐槽最好笑的那一句——先抓住眼球</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">3–22 秒</span>
+        <span class="tl-text">ACG 吐槽精華片段 + 沈伯洋在遠處插嘴，大字字幕，笑點集中在這裡</span>
+      </div>
+      <div class="tl-row">
+        <span class="tl-time">22–30 秒</span>
+        <span class="tl-text">你老婆一句 OS 收尾，或 Sandy 的最後一個表情／反應，讓人想去查這個人是誰</span>
+      </div>
+    </div>
+    <div class="callout red">開頭 3 秒決定生死。Instagram 年輕人一看到選舉感就滑掉，所以永遠先讓他們笑，他們自己會去查。</div>
+  </section>
+
+  <!-- 六、ACG 笑點 -->
+  <section id="acg">
+    <div class="section-label">06</div>
+    <h2>ACG 隱藏亮點</h2>
+    <p>沈伯洋是 ACG 全面迷，這個身份在政治人物裡極為罕見。ACG 族群一旦認同「這個人跟我一樣」，會主動在自己的社群擴散，這是買廣告買不到的有機流量。</p>
+    <p>公式：Sandy 吐槽 → 沈伯洋遠處插嘴辯護 → 越辯越糟 → 笑點自然浮現。</p>
+
+    <h3>笑點方向一：扭蛋控</h3>
+    <div class="script">
+      <div class="script-row">
+        <div class="script-speaker sandy">Sandy</div>
+        <div class="script-line">「他買扭蛋買到我要管他零用錢了」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker puma">沈伯洋（遠處）</div>
+        <div class="script-line">「那是限定款！你不懂」</div>
+      </div>
+    </div>
+
+    <h3>笑點方向二：追番失蹤</h3>
+    <div class="script">
+      <div class="script-row">
+        <div class="script-speaker sandy">Sandy</div>
+        <div class="script-line">「有一次說等一下就好，結果一個下午不見了」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker puma">沈伯洋（遠處）</div>
+        <div class="script-line">「那集剛好在講關鍵劇情，我能怎麼辦」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker wife">你老婆</div>
+        <div class="script-line">（對著鏡頭）「就這樣」</div>
+      </div>
+    </div>
+
+    <h3>笑點方向三：兩個女生與一個宅男</h3>
+    <div class="script">
+      <div class="script-row">
+        <div class="script-speaker wife">你老婆</div>
+        <div class="script-line">「他在家都在幹嘛？」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker sandy">Sandy</div>
+        <div class="script-line">（嘆氣）「不是在追番就是在找扭蛋，要不然就在研究下一季有什麼」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker puma">沈伯洋（遠處）</div>
+        <div class="script-line">「這叫做文化研究」</div>
+      </div>
+      <div class="script-row">
+        <div class="script-speaker wife">兩人</div>
+        <div class="script-line">（同時轉頭看他）</div>
+      </div>
+    </div>
+
+    <div class="callout">建議三個方向都拍，剪輯時選效果最好的一個。拍攝前不需要給沈伯洋看腳本，他的自然反應才是笑點所在。</div>
+  </section>
+
+  <!-- 七、問題清單 -->
+  <section id="questions">
+    <div class="section-label">07</div>
+    <h2>拍攝當天問題清單</h2>
+    <p>不需要照順序問，這份清單是讓對談有方向感的底稿。讓對話自然流動，不要像訪問。</p>
+
+    <h3>讓觀眾喜歡他的問題</h3>
+    <ul class="q-list">
+      <li class="q-item"><span class="q-num">01</span><span>他在家跟外面一樣嗎？</span></li>
+      <li class="q-item"><span class="q-num">02</span><span>他有什麼讓你印象深刻的小習慣？</span></li>
+      <li class="q-item"><span class="q-num">03</span><span>你最欣賞他哪一點？</span></li>
+      <li class="q-item"><span class="q-num">04</span><span>他做過最讓你感動的事是什麼？</span></li>
+      <li class="q-item"><span class="q-num">05</span><span>他對台北這個城市有什麼特別的感情或執著？</span></li>
+    </ul>
+
+    <h3>讓觀眾覺得真實的問題（官方不會問的）</h3>
+    <ul class="q-list">
+      <li class="q-item"><span class="q-num">01</span><span>他最大的缺點是什麼？</span></li>
+      <li class="q-item"><span class="q-num">02</span><span>有沒有覺得他很煩的時候？</span></li>
+      <li class="q-item"><span class="q-num">03</span><span>他在家都在追什麼番？最近沈迷什麼？</span></li>
+      <li class="q-item"><span class="q-num">04</span><span>扭蛋到底買了多少了？</span></li>
+      <li class="q-item"><span class="q-num">05</span><span>你最擔心的事是什麼？</span></li>
+    </ul>
+
+    <div class="callout green">官方頻道永遠不會問這種問題。正因為有這種問題，觀眾才相信這不是廣告。</div>
+  </section>
+
+  <!-- 八、製作規格 -->
+  <section id="spec">
+    <div class="section-label">08</div>
+    <h2>製作規格</h2>
+    <div class="spec-grid">
+      <div class="spec-block">
+        <div class="spec-block-title">器材</div>
+        <ul class="spec-list">
+          <li>手機拍攝（主機）</li>
+          <li>領夾麥克風（最重要，收音差整支廢）</li>
+          <li>簡易腳架</li>
+          <li>自然光為主（下午 4–6 點最佳）</li>
+          <li>直式拍攝優先</li>
+        </ul>
+      </div>
+      <div class="spec-block">
+        <div class="spec-block-title">剪輯與發布</div>
+        <ul class="spec-list">
+          <li>CapCut（自動字幕生成）</li>
+          <li>字幕必做（85% 靜音觀看）</li>
+          <li>同一素材剪兩個版本</li>
+          <li>Facebook：晚上 8–10 點發布</li>
+          <li>Instagram：中午 12–1 點或晚上 9–11 點</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 九、差異對照 -->
+  <section id="compare">
+    <div class="section-label">09</div>
+    <h2>我們 vs 官方頻道</h2>
+    <table class="compare">
+      <thead>
+        <tr>
+          <th>面向</th>
+          <th>官方頻道</th>
+          <th>我們的影片</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>視角</td>
+          <td class="them">由內往外（自己拍自己）</td>
+          <td class="us">由外往內（朋友帶你認識）</td>
+        </tr>
+        <tr>
+          <td>內容類型</td>
+          <td class="them">質詢、政策、立法存檔</td>
+          <td class="us">生活、真實、ACG、笑點</td>
+        </tr>
+        <tr>
+          <td>目標受眾</td>
+          <td class="them">已支持他的人</td>
+          <td class="us">還不認識他的中間族群</td>
+        </tr>
+        <tr>
+          <td>可信度來源</td>
+          <td class="them">候選人自己說</td>
+          <td class="us">朋友帶你認識，更可信</td>
+        </tr>
+        <tr>
+          <td>選舉感</td>
+          <td class="them">明顯</td>
+          <td class="us">完全沒有，觀眾沒有防禦心</td>
+        </tr>
+        <tr>
+          <td>擴散方式</td>
+          <td class="them">官方推送</td>
+          <td class="us">觀眾主動分享、有機流量</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</main>
+
+<script>
+  // Intersection Observer for scroll animations
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.08 });
+  sections.forEach(s => observer.observe(s));
+
+  // Active nav highlight
+  const navLinks = document.querySelectorAll('.toc a');
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const active = document.querySelector(`.toc a[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.4 });
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>
