@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F6EFE6">
+<title>台南一大一小｜8/22 美食散步行程</title>
+<style>
+:root{
+  --bg:#f7f1e8; --card:#fffdf9; --ink:#2f2923; --muted:#766c62;
+  --accent:#bb5a3c; --accent2:#d89a55; --green:#55735b; --line:#e8ddd0;
+  --shadow:0 10px 30px rgba(86,64,42,.08);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:linear-gradient(180deg,#f8f0e5 0,#fbf8f3 50%,#f2eadf 100%);
+  color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC","PingFang TC",sans-serif;
+  line-height:1.65;
+}
+.wrap{max-width:920px;margin:auto;padding:18px}
+.hero{
+  margin:8px 0 18px;padding:30px 24px;border-radius:28px;
+  background:radial-gradient(circle at 80% 10%,rgba(255,255,255,.9),transparent 35%),
+             linear-gradient(135deg,#f2c88d,#e78862);
+  box-shadow:var(--shadow);overflow:hidden;position:relative;
+}
+.hero h1{font-size:clamp(30px,7vw,52px);line-height:1.05;margin:0 0 10px;letter-spacing:-.04em}
+.hero p{max-width:650px;margin:0;font-size:17px}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:17px}
+.badge{background:rgba(255,255,255,.72);padding:6px 10px;border-radius:999px;font-size:13px;font-weight:700}
+.must{background:#fff2b8}
+.nav{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:14px 0 24px}
+.nav a{text-decoration:none;color:var(--ink);background:var(--card);border:1px solid var(--line);padding:10px;border-radius:14px;text-align:center;font-size:14px;font-weight:700}
+.section-title{font-size:24px;margin:28px 2px 12px}
+.timeline{display:grid;gap:12px}
+.stop{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:18px;
+  box-shadow:var(--shadow);position:relative;
+}
+.stop::before{content:"";position:absolute;left:0;top:20px;bottom:20px;width:5px;background:var(--accent2);border-radius:0 8px 8px 0}
+.stop.must-stop::before{background:var(--accent)}
+.row{display:flex;gap:14px;align-items:flex-start}
+.time{min-width:74px;font-weight:800;color:var(--accent);font-size:15px}
+.content{flex:1}
+.content h3{margin:0 0 4px;font-size:20px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:10px}
+.order{background:#faf3e8;border-radius:14px;padding:10px 12px;margin-top:10px}
+.order b{color:var(--green)}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.btn{display:inline-block;text-decoration:none;color:white;background:var(--ink);padding:8px 11px;border-radius:12px;font-size:13px;font-weight:700}
+.btn.alt{background:var(--green)}
+details{margin-top:12px;background:#f6eee4;border-radius:14px;padding:10px 12px}
+summary{cursor:pointer;font-weight:800;color:var(--accent)}
+.backup{margin-top:8px;padding-top:8px;border-top:1px dashed #d8c8b8}
+.backup:first-of-type{border-top:0}
+.backup b{display:block}
+.logic{
+  background:#263128;color:#fff;border-radius:22px;padding:18px 20px;margin:16px 0;box-shadow:var(--shadow)
+}
+.logic strong{color:#ffd69b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+.mini h3{margin:0 0 6px}
+.kid{background:#eef5ed}
+.warning{background:#fff4e9}
+.footer{color:var(--muted);font-size:12px;text-align:center;padding:28px 0 40px}
+.route{
+  padding:14px 16px;background:#fff;border:1px dashed #d2b89e;border-radius:16px;margin:12px 0;
+  font-weight:700;
+}
+@media(max-width:650px){
+  .wrap{padding:12px}.hero{padding:24px 18px;border-radius:22px}
+  .nav{grid-template-columns:repeat(2,1fr)}
+  .grid{grid-template-columns:1fr}.row{display:block}.time{margin-bottom:3px}
+  .stop{padding:16px 15px 16px 19px}
+}
+@media print{
+  body{background:white}.nav,.actions{display:none}.stop,.mini,.hero{box-shadow:none}
+  details{display:block}details > *{display:block}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="hero">
+    <h1>台南一大一小<br>美食散步日</h1>
+    <p>2026/08/22（六）｜原則：每家少量分食、不為名店耗掉整天。<br>
+    主線吃經典，排隊太誇張就立刻切備案，最後一定留胃給五妃廟豆腐冰。</p>
+    <div class="badges">
+      <span class="badge">👨‍👦 1 大 1 小</span>
+      <span class="badge">🍴 少量分食</span>
+      <span class="badge">🚶 老城散步</span>
+      <span class="badge must">⭐ 五妃廟豆腐冰必吃</span>
+      <span class="badge">🌙 晚餐：夜市</span>
+    </div>
+  </section>
+
+  <nav class="nav">
+    <a href="#lunch">午餐</a>
+    <a href="#dessert">豆腐冰</a>
+    <a href="#night">晚餐夜市</a>
+    <a href="#rules">備案規則</a>
+  </nav>
+
+  <section id="lunch">
+    <h2 class="section-title">☀️ 午餐｜永樂市場 → 國華街</h2>
+    <div class="route">富盛號 → 金得春捲 → 阿松割包 → 國華街／正興街散步</div>
+
+    <div class="timeline">
+      <article class="stop">
+        <div class="row">
+          <div class="time">11:00</div>
+          <div class="content">
+            <h3>① 富盛號</h3>
+            <div class="meta">國華街三段184號／民族路三段11號｜週六約 07:00–16:30</div>
+            <div>第一站用碗粿開場，份量小、台南辨識度高，而且不會一開始就把胃塞滿。</div>
+            <div class="order"><b>建議：</b>碗粿 1 碗，兩人分食。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=富盛號+台南">Google Maps</a>
+            </div>
+            <details>
+              <summary>排太久？打開備案</summary>
+              <div class="backup"><b>備案 A｜邱家小卷米粉</b>就在同一區，11:00 開。兩人一碗即可。</div>
+              <div class="backup"><b>備案 B｜直接跳下一站</b>不要為了碗粿等 30–40 分鐘；國華街後面選擇非常多。</div>
+            </details>
+          </div>
+        </div>
+      </article>
+
+      <article class="stop">
+        <div class="row">
+          <div class="time">11:25</div>
+          <div class="content">
+            <h3>② 金得春捲</h3>
+            <div class="meta">民族路三段19號｜週六約 07:30–16:30</div>
+            <div>台南春捲是這趟很值得讓小孩認識的地方味，而且一份很好分。</div>
+            <div class="order"><b>建議：</b>1 份兩人分，不要各買一份。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=金得春捲+台南">Google Maps</a>
+            </div>
+            <details>
+              <summary>排太久？打開備案</summary>
+              <div class="backup"><b>備案｜阿松割包先吃</b>就在國華街三段181號，幾乎等於同一個美食圈，先交換順序即可。</div>
+            </details>
+          </div>
+        </div>
+      </article>
+
+      <article class="stop">
+        <div class="row">
+          <div class="time">11:50</div>
+          <div class="content">
+            <h3>③ 阿松割包</h3>
+            <div class="meta">國華街三段181號｜週六約 08:00–15:30</div>
+            <div>這站比較偏「大人想吃就吃」。如果小孩不接受豬舌或肥肉，不需要硬湊。</div>
+            <div class="order"><b>建議：</b>只買 1 份；前兩站已經吃不少就直接跳過。</div>
+            <div class="actions">
+              <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=阿松割包+台南">Google Maps</a>
+            </div>
+            <details>
+              <summary>小孩不想吃／排太久？</summary>
+              <div class="backup"><b>備案｜克林台包留到下午</b>口味比較容易接受，也能當點心或買回去，不必此刻硬吃第三個鹹食。</div>
+            </details>
+          </div>
+        </div>
+      </article>
+
+      <article class="stop">
+        <div class="row">
+          <div class="time">12:15</div>
+          <div class="content">
+            <h3>④ 國華街 → 正興街 → 海安路散步</h3>
+            <div>不要再安排第四家主食。逛店、喝水、消化，讓小孩也有「不是一直陪爸爸排隊吃東西」的時間。</div>
+            <details>
+              <summary>真的還想吃甜的？</summary>
+              <div class="backup"><b>江水號</b>國華街三段26號 B11，週六約 12:00–20:00。</div>
+              <div class="backup"><b>泰成水果店</b>正興街80號，週六約 12:00–19:00。</div>
+              <div class="backup">但兩家都建議<strong>只在真的很想吃時才進去</strong>，因為下午還有指定必吃的豆腐冰。</div>
+            </details>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="dessert">
+    <h2 class="section-title">❤️ 下午主角｜五妃廟豆腐冰</h2>
+    <article class="stop must-stop">
+      <div class="row">
+        <div class="time">14:30</div>
+        <div class="content">
+          <h3>⑤ 懷舊小棧杏仁豆腐冰</h3>
+          <div class="meta">五妃街206號｜週六約 10:30–21:00</div>
+          <div><strong>這家不設替代品。</strong>其他站都可以放棄，這家照你的要求一定吃到。</div>
+          <div class="order"><b>策略：</b>下午 2:00–3:30 左右過來，比「吃完午餐立刻塞冰」舒服。吃完順便走五妃廟周邊。</div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=懷舊小棧杏仁豆腐冰+台南">Google Maps</a>
+          </div>
+          <details>
+            <summary>如果現場真的大排長龍</summary>
+            <div class="backup"><b>不要換店：</b>先去附近走走／找地方休息，30–60 分鐘後再回來。</div>
+            <div class="backup">因為這是整趟唯一指定的「不可替換站」，行程彈性全部讓給它。</div>
+          </details>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <h2 class="section-title">🌤 下午空檔｜只挑一個，不趕場</h2>
+    <div class="grid">
+      <div class="mini kid">
+        <h3>Option A｜安平</h3>
+        <p>適合想讓小孩走走、看老街、吃完消化。行程自由度最高。</p>
+      </div>
+      <div class="mini">
+        <h3>Option B｜飯店／咖啡店休息</h3>
+        <p>其實非常合理。晚上還要夜市，下午不用硬塞景點。</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="night">
+    <h2 class="section-title">🌙 晚餐｜花園夜市</h2>
+    <article class="stop">
+      <div class="row">
+        <div class="time">17:30</div>
+        <div class="content">
+          <h3>⑥ 台南花園夜市</h3>
+          <div class="meta">海安路三段533號｜週六約 17:00–00:00</div>
+          <div>晚上不再追老店，改成「小孩看到什麼想吃就挑」。白天吃的是台南老城味，晚上吃的是夜市體驗。</div>
+          <div class="order"><b>建議玩法：</b>先完整走一圈再買，不要一進門就被第一攤雞排填飽。鹹食 2–3 樣＋飲料／甜點 1 樣，兩人共享。</div>
+          <div class="actions">
+            <a class="btn" target="_blank" href="https://www.google.com/maps/search/?api=1&query=台南花園夜市">Google Maps</a>
+          </div>
+          <details>
+            <summary>花園太塞、停車太痛苦？</summary>
+            <div class="backup"><b>備案 A｜武聖夜市</b>武聖路69巷，週六約 17:00–00:00。規模較小，仍有完整夜市氣氛。</div>
+            <div class="backup"><b>備案 B｜保安路晚餐</b>不想逛夜市就改吃阿明豬心冬粉（17:00 開）或矮仔成蝦仁飯（約 19:30 前）。</div>
+            <div class="actions">
+              <a class="btn alt" target="_blank" href="https://www.google.com/maps/search/?api=1&query=武聖夜市+台南">武聖夜市</a>
+              <a class="btn alt" target="_blank" href="https://www.google.com/maps/search/?api=1&query=阿明豬心冬粉+台南">阿明豬心</a>
+            </div>
+          </details>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="rules">
+    <h2 class="section-title">🧭 當天不用思考的切換規則</h2>
+    <div class="logic">
+      <strong>15 分鐘內：</strong>想吃就排。<br>
+      <strong>15–30 分鐘：</strong>只有「真的很想吃」才排。<br>
+      <strong>超過 30 分鐘：</strong>除了五妃廟豆腐冰，一律啟動備案。<br><br>
+      這趟的目標不是蒐集名店，而是讓<strong>一大一小都玩得舒服</strong>。
+    </div>
+
+    <div class="grid">
+      <div class="mini warning">
+        <h3>胃容量守則</h3>
+        <p>午餐每家只點 1 份共享。前三站最多吃 2–3 家。看到下一家很想吃，就上一家少吃一點。</p>
+      </div>
+      <div class="mini kid">
+        <h3>小孩耐心守則</h3>
+        <p>連續排兩次隊後，一定安排散步／逛店／休息。不要讓整趟台南變成排隊耐力賽。</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="section-title">📌 極簡版：當天只看這裡</h2>
+    <div class="route">
+      11:00 富盛號 → 11:25 金得春捲 → 11:50 阿松割包（可跳）<br>
+      → 12:15 國華街／正興街散步 → 14:30 五妃廟豆腐冰 ⭐<br>
+      → 下午休息／安平 → 17:30 花園夜市<br>
+      → 花園太塞：武聖夜市 → 連夜市都不想逛：保安路吃晚餐
+    </div>
+  </section>
+
+  <div class="footer">
+    行程版本：2026/08/17 製作｜旅遊日：2026/08/22（六）<br>
+    營業時間依製作當日公開商家資訊整理；店家臨時休息、售完仍以現場公告為準。
+  </div>
+</div>
+</body>
+</html>
